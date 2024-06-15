@@ -1,14 +1,17 @@
 <!-- eslint-disable vue/valid-template-root -->
 <template>
     <header class="header">
-        <nav class="nav">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="#home">Home</a></li>
-                <li class="nav-item"><a href="#about">About</a></li>
-                <li class="nav-item"><a href="#services">Services</a></li>
-                <li class="nav-item"><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="row">
+            <div class="logo">
+                <router-link to="/">Daifuku</router-link>
+            </div>
+            <div class="link">
+                <router-link to="/PostPage">投稿一覧</router-link>
+                <router-link to="/DiagnosisPage">診断ページ</router-link>
+                <router-link to="/LoginPage">ログイン</router-link>
+                <router-link to="/SignUpPage">新規登録</router-link>
+            </div>
+        </div>
     </header>
 </template>
 
@@ -28,28 +31,27 @@ export default {
   background-color: #333;
   color: white;
   padding: 1rem;
+  top: 0;
+  left: 0;
 }
-
-.nav {
+.logo {
+  text-align: left;
+}
+header .row {
+  text-align: right;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
-
-.nav-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-item a {
-  color: white;
+header a {
+  color: #fff;
   text-decoration: none;
-  font-weight: bold;
+  margin-left: 2em;
 }
-
-.nav-item a:hover {
+header a:hover {
   text-decoration: underline;
+}
+h1 {
+  margin: 0;
+  color: #fff;
 }
 </style>

@@ -1,21 +1,17 @@
 <template>
   <div class="home">
-    <Header/>
-    <div class="msg">
-      <h1>{{ msg }}</h1>
+    <div class="title">
+      <h1>{{ title }}</h1>
     </div>
   </div>
 </template>
 
 <script>
-import Header from './Header.vue'
-
 export default {
-  components: { Header },
   name: 'HomePage',
   data () {
     return {
-      msg: ''
+      title: ''
     }
   }
 }
