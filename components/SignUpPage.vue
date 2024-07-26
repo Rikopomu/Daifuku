@@ -22,6 +22,8 @@
 
 <script>
 
+import axios from 'axios' // Axiosをインポート
+
 export default {
   name: 'SignUpPage',
   data () {
@@ -34,26 +36,32 @@ export default {
     }
   },
   methods: {
-    handleSubmit () {
+    async handleSubmit () {
       // 簡易的なバリデーション
       if (!this.username || !this.email || !this.password) {
         this.errorMessage = 'すべてのフィールドを入力してください。'
         return
       }
 
-      // 新規登録の処理（ここではダミーの処理を示します）
-      console.log('登録情報:', {
-        username: this.username,
-        email: this.email,
-        password: this.password
-      })
+      try {
+        // APIに新規登録リクエストを送信
+        const response = await axios.post(`${'https://jsonplaceholder.typicode.com/users'}`, {
+          username: this.username,
+          email: this.email,
+          password: this.password
+        })
 
-      // 登録が成功した場合の処理（例：リダイレクト）
-      this.$router.push('/login') // ログインページにリダイレクトする例
-
-      // 成功メッセージを表示
-      this.errorMessage = '登録できません'
-      alert('登録が完了しました！')
+        // 登録が成功した場合の処理
+        if (response.status === 201) {
+          this.errorMessage = '' // エラーメッセージをクリア
+          alert('登録が完了しました！')
+          this.$router.push('/login') // ログインページにリダイレクトする
+        }
+      } catch (error) {
+        // エラーが発生した場合の処理
+        console.error(error)
+        this.errorMessage = '登録に失敗しました。もう一度お試しください。'
+      }
     }
   }
 }
