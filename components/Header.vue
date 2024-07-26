@@ -6,7 +6,8 @@
                 <router-link to="/">Daifuku</router-link>
             </div>
             <div class="link">
-                <router-link to="/PostPage">投稿一覧</router-link>
+                <router-link to="/PostPage">投稿する</router-link>
+                <router-link to="/PostViewPage">投稿一覧</router-link>
                 <router-link to="/DiagnosisPage">診断ページ</router-link>
                 <router-link to="/LoginPage">ログイン</router-link>
                 <router-link to="/SignUpPage">新規登録</router-link>

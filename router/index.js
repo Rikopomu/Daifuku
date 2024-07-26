@@ -5,6 +5,7 @@ import DiagnosisPage from '@/components/DiagnosisPage'
 import PostPage from '@/components/PostPage'
 import LoginPage from '@/components/LoginPage'
 import SignUpPage from '@/components/SignUpPage'
+import PostViewPage from '@/components/PostViewPage'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/PostPage',
       name: 'PostPage',
       component: PostPage
+    },
+    {
+      path: '/PosViewtPage',
+      name: 'PostViewPage',
+      component: PostViewPage
     },
     {
       path: '/LoginPage',
