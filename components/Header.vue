@@ -33,6 +33,9 @@ export default {
   padding: 1rem;
   top: 0;
   left: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1000; /* 他の要素の上に表示されるようにする */
 }
 .logo {
   text-align: left;
@@ -53,5 +56,8 @@ header a:hover {
 h1 {
   margin: 0;
   color: #fff;
+}
+.link {
+  margin-right: 3.5em;
 }
 </style>
