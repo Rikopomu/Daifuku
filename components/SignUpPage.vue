@@ -55,7 +55,7 @@ export default {
         if (response.status === 201) {
           this.errorMessage = '' // エラーメッセージをクリア
           alert('登録が完了しました！')
-          this.$router.push('/login') // ログインページにリダイレクトする
+          this.$router.push('/LoginPage') // ログインページにリダイレクトする
         }
       } catch (error) {
         // エラーが発生した場合の処理
