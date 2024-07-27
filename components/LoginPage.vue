@@ -48,14 +48,14 @@ export default {
 
         // ログインが成功した場合の処理
         if (response.status === 201) {
-          this.successMessage = 'ログインに成功しました！';
+          this.successMessage = 'ログインに成功しました！'
           this.errorMessage = '' // エラーメッセージをクリア
           // 必要に応じてリダイレクトやセッション管理を行う
         }
       } catch (error) {
         // エラーが発生した場合の処理
         console.error(error)
-        this.errorMessage = 'ログインに失敗しました。メールアドレスまたはパスワードを確認してください。';
+        this.errorMessage = 'ログインに失敗しました。メールアドレスまたはパスワードを確認してください。'
         this.successMessage = '' // 成功メッセージをクリア
       }
     }

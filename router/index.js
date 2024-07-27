@@ -27,7 +27,7 @@ export default new Router({
       component: PostPage
     },
     {
-      path: '/PosViewtPage',
+      path: '/PostViewPage',
       name: 'PostViewPage',
       component: PostViewPage
     },

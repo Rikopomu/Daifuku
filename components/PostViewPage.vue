@@ -57,7 +57,7 @@ export default {
 <style scoped>
 .post-view-page {
   max-width: 600px;
-  margin: 7em auto;
+  margin: auto;
   padding: 80px 20px;
 }
 
