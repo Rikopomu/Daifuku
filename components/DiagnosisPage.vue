@@ -1,10 +1,16 @@
 <template>
   <div class="a">
     <h1>{{ title }}</h1>
+    <input
+      type="text"
+      v-model="searchTerm"
+      placeholder="犬の特徴で検索"
+      @input="filterBreeds"
+    />
     <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
     <div class="dog-breed-container">
-      <div v-for="(image, breed) in dogBreeds" :key="breed" class="dog-breed-card">
-        <h2>{{ breed }}</h2>
+      <div v-for="(image, breed) in filteredDogBreeds" :key="breed" class="dog-breed-card">
+        <h2>{{ dogBreedNames[breed] || breed }}</h2> <!-- 日本語名を表示 -->
         <img :src="image" :alt="breed" class="dog-image">
       </div>
     </div>
@@ -18,7 +24,18 @@ export default {
     return {
       title: '見つける',
       dogBreeds: {},
-      errorMessage: ''
+      dogBreedNames: {
+        'akita': '秋田犬',
+        'bulldog': 'ブルドッグ',
+        'chihuahua': 'チワワ',
+        'dalmatian': 'ダルメシアン',
+        'goldenretriever': 'ゴールデンレトリーバー',
+        'labrador': 'ラブラドール'
+        // 他の犬種も追加する
+      },
+      filteredDogBreeds: {},
+      errorMessage: '',
+      searchTerm: ''
     }
   },
   methods: {
@@ -34,11 +51,11 @@ export default {
 
     async fetchDogImage (breed) {
       try {
-        const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random`);
+        const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
         const data = await response.json()
         return data.message // 犬種に対応する画像のURLを返す
       } catch (error) {
-        this.errorMessage = '犬種の画像を取得できませんでした。';
+        this.errorMessage = '犬種の画像を取得できませんでした。'
       }
     },
 
@@ -49,6 +66,25 @@ export default {
       for (const breed of breedList) {
         const imageUrl = await this.fetchDogImage(breed)
         this.$set(this.dogBreeds, breed, imageUrl)
+      }
+
+      // 初期表示用にすべての犬種を表示
+      this.filteredDogBreeds = { ...this.dogBreeds }
+    },
+
+    filterBreeds () {
+      if (this.searchTerm === '') {
+        // 検索バーが空の時は全ての犬種を表示
+        this.filteredDogBreeds = { ...this.dogBreeds }
+      } else {
+        // 検索用の正規表現を作成
+        const regex = new RegExp(this.searchTerm, 'i') // 大文字小文字を無視
+        this.filteredDogBreeds = Object.keys(this.dogBreeds)
+          .filter(breed => regex.test(breed))
+          .reduce((obj, breed) => {
+            obj[breed] = this.dogBreeds[breed]
+            return obj
+          }, {})
       }
     }
   },
